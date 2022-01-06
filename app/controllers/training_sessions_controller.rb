@@ -24,20 +24,6 @@ class TrainingSessionsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /training_sessions/1
-  def update
-    if @training_session.update(training_session_params)
-      render json: @training_session
-    else
-      render json: @training_session.errors, status: :unprocessable_entity
-    end
-  end
-
-  # DELETE /training_sessions/1
-  def destroy
-    @training_session.destroy
-  end
-
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_training_session
