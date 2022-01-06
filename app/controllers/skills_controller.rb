@@ -1,5 +1,5 @@
 class SkillsController < ApplicationController
-  before_action :set_skill, only: [:show, :update, :destroy]
+  before_action :set_skill, only: [:show]
 
   # GET /skills
   def index
@@ -22,6 +22,11 @@ class SkillsController < ApplicationController
     else
       render(json: @skill.errors, status: :unprocessable_entity)
     end
+  end
+
+  # GET /skills/strong
+  def strong
+    render json: Skill.strong.pluck(:name)
   end
 
   private

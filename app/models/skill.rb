@@ -4,4 +4,5 @@ class Skill < ApplicationRecord
         presence: true,
         uniqueness: true,
         format: {with: /\A[a-z\-]*\z/, message: "'%{value}' must be in kebab-case"}
+    scope :strong, -> { where(level: [:intermediate, :advanced]) }
 end
