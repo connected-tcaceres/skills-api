@@ -13,15 +13,32 @@ class SkillsController < ApplicationController
     render json: @skill
   end
 
+  class SkillCreateService
+    def initialize(params)
+      @params = params
+    end
+
+    def create
+      skill = Skill.new(@params)
+
+      if skill.save
+        return { json: skill, status: :created, location: skill }
+      else
+        return { json: skill.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
   # POST /skills
   def create
-    @skill = Skill.new(skill_params)
+    render SkillCreateService.new(skill_params).create
+    # @skill = Skill.new(skill_params)
 
-    if @skill.save
-      render json: @skill, status: :created, location: @skill
-    else
-      render json: @skill.errors, status: :unprocessable_entity
-    end
+    # if @skill.save
+    #   render(json: @skill, status: :created, location: @skill)
+    # else
+    #   render(json: @skill.errors, status: :unprocessable_entity)
+    # end
   end
 
   # PATCH/PUT /skills/1
