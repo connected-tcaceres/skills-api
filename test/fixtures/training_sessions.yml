@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  skill: one
+  notes: MyText
+  duration_hours: 9.99
+
+two:
+  skill: two
+  notes: MyText
+  duration_hours: 9.99
