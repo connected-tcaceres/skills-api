@@ -24,6 +24,15 @@ class TrainingSessionsController < ApplicationController
     end
   end
 
+  def strongest_skill
+    strongest_skills_query = TrainingSession
+      .joins(:skill)
+      .group('name')
+      .order('sum(duration_hours) desc')
+
+      render json: strongest_skills_query.pick(:name)
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_training_session
